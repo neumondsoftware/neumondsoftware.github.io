@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f8f6f0" id="theme-color-meta">
+  <meta name="description" content="Neumond is a calmer, more thoughtful way to reach your audience. Email first, with more channels to come. Coming soon.">
+  <meta property="og:title" content="Neumond — Marketing, made more human">
+  <meta property="og:description" content="A more thoughtful home for customer communication. Coming soon.">
+  <meta property="og:type" content="website">
+  <title>Neumond — Marketing, made more human</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8f6f0;
+      --bg-alt: #f0eee6;
+      --surface: #fffefa;
+      --surface-2: #f3f1e9;
+      --text: #202b25;
+      --text-soft: #657068;
+      --muted: #899087;
+      --line: #e3e2d8;
+      --green: #2d7758;
+      --green-deep: #205a42;
+      --green-tint: #e5efe5;
+      --blue: #477cb6;
+      --blue-tint: #e5edf7;
+      --orange: #c76e3e;
+      --orange-tint: #f8e9dc;
+      --shadow: 0 24px 70px rgba(41, 54, 43, .08);
+      --shadow-small: 0 8px 26px rgba(41, 54, 43, .06);
+      --radius-lg: 22px;
+      --radius-md: 15px;
+      --radius-sm: 11px;
+      --container: 1120px;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #171c19;
+      --bg-alt: #202721;
+      --surface: #202722;
+      --surface-2: #252d27;
+      --text: #f1f0e8;
+      --text-soft: #b5bdb4;
+      --muted: #89948a;
+      --line: #343e35;
+      --green: #8ac19a;
+      --green-deep: #a3d3ae;
+      --green-tint: #293a2e;
+      --blue: #91bce9;
+      --blue-tint: #293746;
+      --orange: #efaa7f;
+      --orange-tint: #443126;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .24);
+      --shadow-small: 0 8px 26px rgba(0, 0, 0, .18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    strong, b { font-weight: 600; }
+    .container { width: min(var(--container), calc(100% - 48px)); margin-inline: auto; }
+    .page { overflow: hidden; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark {
+      position: relative;
+      width: 35px;
+      height: 35px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 27px;
+      height: 27px;
+      top: -4px;
+      right: -4px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+    .brand-copy { display: block; line-height: 1.2; }
+    .brand-name { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.045em; }
+    .brand-caption { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; letter-spacing: .095em; }
+    .top-actions { display: flex; align-items: center; gap: 13px; }
+    .status { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: 12px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px var(--orange-tint); }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 39px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text-soft);
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .theme-toggle:hover { border-color: var(--green); }
+    .theme-glyph { display: inline-grid; place-items: center; width: 17px; height: 17px; color: var(--orange); font-size: 17px; line-height: 1; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(350px, .88fr);
+      align-items: center;
+      gap: clamp(40px, 7vw, 88px);
+      padding: 77px 0 94px;
+    }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow-mark { display: inline-block; width: 19px; height: 2px; border-radius: 2px; background: var(--orange); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 660px; margin: 19px 0 20px; font-size: clamp(45px, 6.1vw, 73px); line-height: 1.02; font-weight: 600; letter-spacing: -.065em; }
+    .hero-highlight { color: var(--green); }
+    .hero-description { max-width: 500px; margin-bottom: 0; color: var(--text-soft); font-size: 17px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 17px; border: 1px solid transparent; border-radius: 999px; font-size: 13px; font-weight: 500; }
+    .button:hover { border-color: var(--blue); }
+    .button-primary { background: var(--green); color: #fffdf6; }
+    html[data-theme="dark"] .button-primary { color: #18231b; }
+    .button-primary:hover { background: var(--green-deep); }
+    .button-secondary { background: transparent; border-color: var(--line); color: var(--text); }
+    .button-secondary:hover { border-color: var(--blue); }
+    .button-arrow { font-size: 16px; line-height: 1; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 22px; color: var(--muted); font-size: 12px; }
+    .note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+
+    /* Straight, interactive marketing-workspace preview */
+    .preview-wrap { position: relative; padding: 10px 0 22px; }
+    .preview-card { overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); box-shadow: var(--shadow); }
+    .app-topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--surface); }
+    .app-brand { display: flex; align-items: center; gap: 7px; min-width: 0; }
+    .app-brand-mark { position: relative; width: 19px; height: 19px; flex: 0 0 auto; border-radius: 50%; overflow: hidden; background: var(--green); }
+    .app-brand-mark::after { content: ""; position: absolute; width: 15px; height: 15px; top: -2px; right: -2px; border-radius: 50%; background: var(--surface); }
+    .app-brand-name { font-size: 12px; font-weight: 600; letter-spacing: -.035em; }
+    .app-top-actions { display: flex; align-items: center; gap: 8px; }
+    .app-icon-button { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--text-soft); font-size: 12px; }
+    .app-user-avatar { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: var(--blue-tint); color: var(--blue); font-size: 9px; font-weight: 600; }
+    .app-layout { display: grid; grid-template-columns: 124px minmax(0, 1fr); min-height: 385px; }
+    .app-sidebar { display: flex; flex-direction: column; gap: 15px; min-width: 0; padding: 12px 8px 10px; border-right: 1px solid var(--line); background: var(--surface-2); }
+    .workspace-select { display: flex; align-items: center; gap: 6px; width: 100%; padding: 7px 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); text-align: left; cursor: pointer; }
+    .workspace-avatar { display: grid; place-items: center; width: 23px; height: 23px; flex: 0 0 auto; border-radius: 6px; background: var(--orange-tint); color: var(--orange); font-size: 8px; font-weight: 600; }
+    .workspace-copy { flex: 1; min-width: 0; }
+    .workspace-copy span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .workspace-copy span:first-child { font-size: 8px; font-weight: 600; }
+    .workspace-copy span:last-child { margin-top: 2px; color: var(--muted); font-size: 7px; }
+    .workspace-chevron { color: var(--muted); font-size: 10px; }
+    .app-nav-label { margin: 0 0 5px 7px; color: var(--muted); font-size: 8px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+    .app-nav { display: grid; gap: 3px; }
+    .app-nav-button { display: flex; align-items: center; gap: 7px; width: 100%; padding: 7px 7px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--text-soft); font-family: inherit; font-size: 9px; text-align: left; cursor: pointer; }
+    .app-nav-button:hover { background: var(--surface); color: var(--text); }
+    .app-nav-button[aria-current="page"] { border-color: var(--line); background: var(--surface); color: var(--green); font-weight: 600; }
+    .nav-icon { display: inline-grid; place-items: center; width: 15px; flex: 0 0 auto; color: currentColor; font-size: 12px; }
+    .app-sidebar-bottom { margin-top: auto; padding: 9px 7px 0; border-top: 1px solid var(--line); }
+    .sidebar-plan { margin-bottom: 7px; color: var(--muted); font-size: 8px; }
+    .sidebar-plan strong { color: var(--text-soft); font-weight: 600; }
+    .app-main { min-width: 0; padding: 15px 14px 16px; background: var(--bg); }
+    .app-content-header { display: flex; align-items: start; justify-content: space-between; gap: 8px; margin-bottom: 13px; }
+    .app-breadcrumb { margin: 0 0 3px; color: var(--muted); font-size: 8px; }
+    .app-view-title { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 600; letter-spacing: -.045em; }
+    .app-view-subtitle { margin: 4px 0 0; color: var(--text-soft); font-size: 8px; line-height: 1.5; }
+    .app-create-button { flex: 0 0 auto; padding: 7px 9px; border: 1px solid var(--green); border-radius: 7px; background: var(--green); color: #fffdf6; font-family: inherit; font-size: 8px; font-weight: 500; cursor: pointer; }
+    html[data-theme="dark"] .app-create-button { color: #18231b; }
+    .app-create-button:hover { background: var(--green-deep); border-color: var(--green-deep); }
+    .app-view[hidden] { display: none !important; }
+    .app-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+    .app-stat { min-width: 0; padding: 9px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .app-stat-label { overflow: hidden; color: var(--text-soft); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+    .app-stat-value { margin-top: 6px; font-size: 17px; line-height: 1; font-weight: 600; letter-spacing: -.05em; }
+    .app-stat-foot { margin-top: 5px; color: var(--green); font-size: 7px; white-space: nowrap; }
+    .app-stat:nth-child(2) .app-stat-foot { color: var(--blue); }
+    .app-stat:nth-child(3) .app-stat-foot { color: var(--orange); }
+    .app-content-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 8px; margin-top: 9px; }
+    .app-panel { min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+    .app-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-bottom: 9px; }
+    .app-panel-heading h3 { margin: 0; font-size: 9px; font-weight: 600; }
+    .app-panel-heading span { color: var(--muted); font-size: 7px; }
+    .app-chart { display: flex; align-items: end; gap: 6px; height: 67px; padding: 4px 2px 0; border-bottom: 1px solid var(--line); }
+    .app-chart-bar { flex: 1; min-width: 4px; border-radius: 3px 3px 0 0; background: var(--green-tint); }
+    .app-chart-bar:nth-child(3n) { background: var(--blue-tint); }
+    .app-chart-bar:nth-child(4n) { background: var(--orange-tint); }
+    .app-chart-bar:nth-child(1) { height: 28%; }
+    .app-chart-bar:nth-child(2) { height: 40%; }
+    .app-chart-bar:nth-child(3) { height: 33%; }
+    .app-chart-bar:nth-child(4) { height: 57%; }
+    .app-chart-bar:nth-child(5) { height: 48%; }
+    .app-chart-bar:nth-child(6) { height: 69%; }
+    .app-chart-bar:nth-child(7) { height: 61%; }
+    .app-chart-bar:nth-child(8) { height: 88%; }
+    .app-chart-labels { display: flex; justify-content: space-between; margin-top: 5px; color: var(--muted); font-size: 7px; }
+    .app-channel-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 9px 0; font-size: 8px; }
+    .app-channel-left { display: flex; align-items: center; gap: 6px; color: var(--text-soft); }
+    .app-channel-dot { width: 7px; height: 7px; border-radius: 3px; background: var(--green); }
+    .app-channel-row:nth-of-type(3) .app-channel-dot { background: var(--blue); }
+    .app-channel-row:nth-of-type(4) .app-channel-dot { background: var(--orange); }
+    .app-channel-value { font-weight: 600; }
+    .app-table-panel { margin-top: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+    .app-table { width: 100%; border-collapse: collapse; font-size: 8px; text-align: left; }
+    .app-table th { padding: 7px 4px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 7px; font-weight: 500; }
+    .app-table td { padding: 8px 4px; border-bottom: 1px solid var(--line); color: var(--text-soft); }
+    .app-table tr:last-child td { border-bottom: 0; }
+    .app-table td:first-child { color: var(--text); font-weight: 500; }
+    .app-status { display: inline-block; padding: 3px 6px; border-radius: 5px; background: var(--green-tint); color: var(--green); font-size: 7px; white-space: nowrap; }
+    .app-status.draft { background: var(--orange-tint); color: var(--orange); }
+    .app-status.scheduled { background: var(--blue-tint); color: var(--blue); }
+    .app-contact-avatar { display: inline-grid; place-items: center; width: 18px; height: 18px; margin-right: 4px; border-radius: 50%; background: var(--blue-tint); color: var(--blue); font-size: 7px; vertical-align: middle; }
+    .app-template-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .app-template { padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .app-template-art { display: grid; gap: 4px; height: 70px; padding: 10px; border-radius: 5px; background: var(--green-tint); }
+    .app-template:nth-child(2) .app-template-art { background: var(--blue-tint); }
+    .app-template:nth-child(3) .app-template-art { background: var(--orange-tint); }
+    .app-template:nth-child(4) .app-template-art { background: var(--surface-2); }
+    .app-template-art span { display: block; height: 4px; width: 78%; border-radius: 4px; background: var(--green); opacity: .55; }
+    .app-template-art span:nth-child(2) { width: 95%; height: 18px; background: var(--surface); opacity: .9; }
+    .app-template-art span:nth-child(3) { width: 48%; background: var(--orange); }
+    .app-template-name { margin: 7px 0 1px; font-size: 8px; font-weight: 600; }
+    .app-template-meta { color: var(--muted); font-size: 7px; }
+    .app-automation { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .app-automation-icon { display: grid; place-items: center; width: 28px; height: 28px; flex: 0 0 auto; border-radius: 8px; background: var(--blue-tint); color: var(--blue); font-size: 13px; }
+    .app-automation:nth-child(2) .app-automation-icon { background: var(--green-tint); color: var(--green); }
+    .app-automation-copy { flex: 1; min-width: 0; }
+    .app-automation-copy strong, .app-automation-copy span { display: block; }
+    .app-automation-copy strong { font-size: 8px; font-weight: 600; }
+    .app-automation-copy span { margin-top: 2px; color: var(--muted); font-size: 7px; }
+    .app-mini-switch { width: 22px; height: 12px; padding: 2px; border-radius: 99px; background: var(--green); }
+    .app-mini-switch::after { content: ""; display: block; width: 8px; height: 8px; margin-left: 10px; border-radius: 50%; background: white; }
+    .preview-note { display: flex; align-items: center; gap: 8px; margin: 10px 2px 0; color: var(--text-soft); font-size: 10px; }
+    .preview-note-mark { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: var(--orange-tint); color: var(--orange); }
+
+    .vision { padding: 0 0 82px; }
+    .section-rule { height: 1px; background: var(--line); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; padding: 49px 0 26px; }
+    .section-heading h2 { max-width: 520px; margin: 11px 0 0; font-size: clamp(28px, 3.6vw, 41px); line-height: 1.12; font-weight: 600; letter-spacing: -.05em; }
+    .section-heading > p { max-width: 370px; margin: 0 0 4px; color: var(--text-soft); font-size: 13px; line-height: 1.85; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+    .feature-card { min-height: 200px; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+    .feature-card:hover { border-color: var(--feature-color, var(--line)); }
+    .feature-card:nth-child(1) { --feature-color: var(--green); }
+    .feature-card:nth-child(2) { --feature-color: var(--blue); }
+    .feature-card:nth-child(3) { --feature-color: var(--orange); }
+    .feature-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .feature-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--green-tint); color: var(--green); font-size: 17px; }
+    .feature-card:nth-child(2) .feature-icon { background: var(--blue-tint); color: var(--blue); }
+    .feature-card:nth-child(3) .feature-icon { background: var(--orange-tint); color: var(--orange); }
+    .feature-number { color: var(--muted); font-size: 10px; }
+    .feature-card h3 { margin: 20px 0 7px; font-size: 15px; font-weight: 600; letter-spacing: -.02em; }
+    .feature-card p { margin: 0; color: var(--text-soft); font-size: 12px; line-height: 1.85; }
+    .closing { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; margin-bottom: 30px; padding: clamp(25px, 4vw, 42px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(115deg, var(--green-tint), var(--surface) 54%, var(--orange-tint)); }
+    .closing .eyebrow { color: var(--green); }
+    .closing h2 { margin: 10px 0 8px; font-size: clamp(25px, 3.6vw, 36px); line-height: 1.12; font-weight: 600; letter-spacing: -.05em; }
+    .closing p { max-width: 590px; margin: 0; color: var(--text-soft); font-size: 13px; line-height: 1.8; }
+    .closing-action { flex: 0 0 auto; }
+    .footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 0 28px; color: var(--muted); font-size: 11px; }
+    .footer-brand { display: flex; align-items: center; gap: 8px; }
+    .footer-mark { position: relative; width: 19px; height: 19px; border-radius: 50%; background: var(--green); overflow: hidden; }
+    .footer-mark::after { content: ""; position: absolute; width: 15px; height: 15px; right: -2px; top: -2px; background: var(--bg); border-radius: 50%; }
+    .footer-right { display: flex; align-items: center; gap: 17px; }
+    .footer-link { color: var(--text-soft); }
+    .footer-link:hover { color: var(--green); }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 35px; padding: 56px 0 72px; }
+      .hero-copy { max-width: 680px; }
+      .preview-wrap { width: min(100%, 590px); margin-inline: auto; }
+      .section-heading { align-items: start; flex-direction: column; gap: 12px; }
+      .section-heading > p { max-width: 560px; }
+    }
+    @media (max-width: 620px) {
+      .container { width: calc(100% - 34px); }
+      .topbar { padding: 17px 0; }
+      .brand-mark { width: 32px; height: 32px; }
+      .brand-mark::after { width: 25px; height: 25px; }
+      .brand-name { font-size: 16px; }
+      .brand-caption { font-size: 9px; }
+      .status { display: none; }
+      .theme-toggle { width: 39px; height: 39px; min-height: 39px; padding: 0; }
+      .theme-label { display: none; }
+      .hero { padding: 43px 0 61px; gap: 30px; }
+      h1 { margin-top: 16px; font-size: clamp(43px, 12vw, 60px); }
+      .hero-description { font-size: 15px; line-height: 1.8; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .button { width: 100%; }
+      .hero-note { align-items: start; font-size: 11px; }
+      .preview-wrap { padding: 0 0 14px; }
+      .vision { padding-bottom: 53px; }
+      .section-heading { padding: 36px 0 22px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 9px; }
+      .feature-card { min-height: 0; padding: 19px; }
+      .feature-card h3 { margin-top: 14px; }
+      .closing { grid-template-columns: 1fr; gap: 21px; padding: 25px 21px; }
+      .closing-action { width: 100%; }
+      .footer { align-items: start; flex-direction: column; gap: 12px; }
+      .footer-right { flex-wrap: wrap; gap: 13px; }
+    }
+
+    @media (max-width: 850px) {
+      .app-layout { grid-template-columns: 142px minmax(0, 1fr); }
+      .app-main { padding: 16px; }
+    }
+    @media (max-width: 620px) {
+      .preview-wrap { padding: 0 0 12px; }
+      .app-layout { grid-template-columns: 92px minmax(0, 1fr); min-height: 0; }
+      .app-sidebar { padding: 9px 5px; gap: 11px; }
+      .workspace-select { gap: 4px; padding: 5px 4px; }
+      .workspace-avatar { width: 19px; height: 19px; }
+      .workspace-copy span:first-child { font-size: 7px; }
+      .workspace-copy span:last-child { font-size: 6px; }
+      .workspace-chevron { display: none; }
+      .app-nav-button { gap: 4px; padding: 7px 4px; font-size: 8px; }
+      .nav-icon { width: 12px; font-size: 11px; }
+      .app-main { padding: 10px 8px; }
+      .app-content-header { gap: 5px; margin-bottom: 9px; }
+      .app-view-title { font-size: 15px; }
+      .app-view-subtitle { max-width: 145px; font-size: 7px; }
+      .app-create-button { max-width: 93px; padding: 7px 6px; font-size: 7px; white-space: normal; }
+      .app-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+      .app-stat { padding: 7px 6px; }
+      .app-stat-value { margin-top: 4px; font-size: 15px; }
+      .app-stat-foot { font-size: 6px; }
+      .app-content-grid { grid-template-columns: 1fr; gap: 6px; margin-top: 6px; }
+      .app-panel { padding: 8px; }
+      .app-chart { height: 42px; }
+      .app-table-panel { padding: 7px; margin-top: 6px; }
+      .app-table { font-size: 7px; }
+      .app-table th, .app-table td { padding: 7px 2px; }
+      .app-table th { font-size: 6px; }
+      .app-status { padding: 2px 4px; font-size: 6px; }
+      .app-template-art { height: 47px; padding: 6px; }
+      .app-template-art span:nth-child(2) { height: 12px; }
+      .app-template-name { font-size: 7px; }
+      .app-template-meta { font-size: 6px; }
+      .preview-note { align-items: start; font-size: 9px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="container topbar">
+      <a class="brand" href="#top" aria-label="Neumond home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy"><span class="brand-name">neumond</span><span class="brand-caption">Marketing software</span></span>
+      </a>
+      <div class="top-actions">
+        <span class="status"><span class="status-dot" aria-hidden="true"></span>Thoughtfully in the works</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="theme-glyph" id="theme-glyph" aria-hidden="true">☼</span><span class="theme-label" id="theme-label">Light theme</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="container hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>A more thoughtful way to connect</div>
+          <h1 id="hero-title">Marketing, made <span class="hero-highlight">more human.</span></h1>
+          <p class="hero-description">An email marketing workspace for thoughtful campaigns, clear audience insights, and customer communication that can grow across channels. We're starting with email, with more ways to connect on the horizon.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#vision">Get to know Neumond <span class="button-arrow" aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#coming-soon">What's coming <span class="button-arrow" aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-note"><span class="note-dot" aria-hidden="true"></span>In the early stages — built with care, not clutter.</div>
+        </div>
+
+        <div class="preview-wrap" aria-label="Interactive preview of the Neumond email marketing software dashboard">
+          <div class="preview-card">
+            <div class="app-topbar">
+              <div class="app-brand"><span class="app-brand-mark" aria-hidden="true"></span><span class="app-brand-name">neumond</span></div>
+              <div class="app-top-actions"><span class="app-icon-button" aria-hidden="true">⌕</span><span class="app-icon-button" aria-hidden="true">♧</span><span class="app-user-avatar" aria-label="Demo account">NS</span></div>
+            </div>
+            <div class="app-layout">
+              <aside class="app-sidebar" aria-label="Preview dashboard navigation">
+                <button class="workspace-select" type="button" aria-label="Demo workspace selector">
+                  <span class="workspace-avatar" aria-hidden="true">NS</span>
+                  <span class="workspace-copy"><span>Neumond Studio</span><span>Free workspace</span></span>
+                  <span class="workspace-chevron" aria-hidden="true">⌄</span>
+                </button>
+                <div>
+                  <p class="app-nav-label">Workspace</p>
+                  <nav class="app-nav" aria-label="Demo app sections">
+                    <button type="button" class="app-nav-button" data-app-view="overview" aria-current="page"><span class="nav-icon" aria-hidden="true">▦</span>Overview</button>
+                    <button type="button" class="app-nav-button" data-app-view="contacts"><span class="nav-icon" aria-hidden="true">♧</span>Contacts</button>
+                    <button type="button" class="app-nav-button" data-app-view="campaigns"><span class="nav-icon" aria-hidden="true">↗</span>Campaigns</button>
+                    <button type="button" class="app-nav-button" data-app-view="templates"><span class="nav-icon" aria-hidden="true">▤</span>Templates</button>
+                    <button type="button" class="app-nav-button" data-app-view="automations"><span class="nav-icon" aria-hidden="true">⤨</span>Automations</button>
+                  </nav>
+                </div>
+                <div class="app-sidebar-bottom">
+                  <div class="sidebar-plan"><strong>Free plan</strong><br>Getting started</div>
+                  <button type="button" class="app-nav-button" data-app-view="settings"><span class="nav-icon" aria-hidden="true">⚙</span>Settings</button>
+                </div>
+              </aside>
+
+              <div class="app-main">
+                <div class="app-content-header">
+                  <div><p class="app-breadcrumb" id="app-breadcrumb">Workspace / Overview</p><h2 class="app-view-title" id="app-view-title">Overview</h2><p class="app-view-subtitle" id="app-view-subtitle">Here's what's happening with your audience.</p></div>
+                  <button type="button" class="app-create-button" id="app-create-button">＋ Create campaign</button>
+                </div>
+
+                <section class="app-view" data-app-panel="overview" aria-label="Overview dashboard">
+                  <div class="app-stats">
+                    <div class="app-stat"><div class="app-stat-label">Total contacts</div><div class="app-stat-value">2,480</div><div class="app-stat-foot">↑ 12.8%</div></div>
+                    <div class="app-stat"><div class="app-stat-label">Emails sent</div><div class="app-stat-value">8,642</div><div class="app-stat-foot">This month</div></div>
+                    <div class="app-stat"><div class="app-stat-label">Open rate</div><div class="app-stat-value">42.6%</div><div class="app-stat-foot">↑ 4.2%</div></div>
+                    <div class="app-stat"><div class="app-stat-label">Click rate</div><div class="app-stat-value">8.3%</div><div class="app-stat-foot">↑ 1.1%</div></div>
+                  </div>
+                  <div class="app-content-grid">
+                    <div class="app-panel"><div class="app-panel-heading"><h3>Campaign performance</h3><span>Last 30 days</span></div><div class="app-chart" aria-label="Illustrative bar chart"><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span><span class="app-chart-bar"></span></div><div class="app-chart-labels"><span>Sep 16</span><span>Sep 30</span><span>Oct 14</span></div></div>
+                    <div class="app-panel"><div class="app-panel-heading"><h3>Audience</h3><span>By status</span></div><div class="app-channel-row"><span class="app-channel-left"><span class="app-channel-dot"></span>Subscribed</span><span class="app-channel-value">2,184</span></div><div class="app-channel-row"><span class="app-channel-left"><span class="app-channel-dot"></span>Pending</span><span class="app-channel-value">186</span></div><div class="app-channel-row"><span class="app-channel-left"><span class="app-channel-dot"></span>Unsubscribed</span><span class="app-channel-value">110</span></div></div>
+                  </div>
+                  <div class="app-table-panel"><div class="app-panel-heading"><h3>Recent campaigns</h3><span>View all →</span></div><table class="app-table"><thead><tr><th>Campaign</th><th>Status</th><th>Opens</th></tr></thead><tbody><tr><td>October product update</td><td><span class="app-status">Sent</span></td><td>46.2%</td></tr><tr><td>Monthly newsletter</td><td><span class="app-status">Sent</span></td><td>39.8%</td></tr><tr><td>Welcome sequence</td><td><span class="app-status scheduled">Scheduled</span></td><td>—</td></tr></tbody></table></div>
+                </section>
+
+                <section class="app-view" data-app-panel="contacts" aria-label="Contacts preview" hidden>
+                  <div class="app-stats"><div class="app-stat"><div class="app-stat-label">All contacts</div><div class="app-stat-value">2,480</div><div class="app-stat-foot">Across your lists</div></div><div class="app-stat"><div class="app-stat-label">Subscribed</div><div class="app-stat-value">2,184</div><div class="app-stat-foot">Can receive campaigns</div></div><div class="app-stat"><div class="app-stat-label">New this month</div><div class="app-stat-value">284</div><div class="app-stat-foot">↑ 8.6%</div></div><div class="app-stat"><div class="app-stat-label">Segments</div><div class="app-stat-value">08</div><div class="app-stat-foot">Audience groups</div></div></div>
+                  <div class="app-table-panel"><div class="app-panel-heading"><h3>Recently added contacts</h3><span>Import CSV +</span></div><table class="app-table"><thead><tr><th>Contact</th><th>Status</th><th>Source</th></tr></thead><tbody><tr><td><span class="app-contact-avatar">AM</span>Alex Morgan</td><td><span class="app-status">Subscribed</span></td><td>Website</td></tr><tr><td><span class="app-contact-avatar">JL</span>Jamie Lee</td><td><span class="app-status">Subscribed</span></td><td>Import</td></tr><tr><td><span class="app-contact-avatar">SR</span>Sam Rivera</td><td><span class="app-status scheduled">Pending</span></td><td>Signup form</td></tr><tr><td><span class="app-contact-avatar">TK</span>Taylor Kim</td><td><span class="app-status">Subscribed</span></td><td>Website</td></tr></tbody></table></div>
+                </section>
+
+                <section class="app-view" data-app-panel="campaigns" aria-label="Campaigns preview" hidden>
+                  <div class="app-stats"><div class="app-stat"><div class="app-stat-label">Total campaigns</div><div class="app-stat-value">24</div><div class="app-stat-foot">All time</div></div><div class="app-stat"><div class="app-stat-label">Sent</div><div class="app-stat-value">18</div><div class="app-stat-foot">Successfully sent</div></div><div class="app-stat"><div class="app-stat-label">Drafts</div><div class="app-stat-value">04</div><div class="app-stat-foot">Ready when you are</div></div><div class="app-stat"><div class="app-stat-label">Avg. opens</div><div class="app-stat-value">42.6%</div><div class="app-stat-foot">Across campaigns</div></div></div>
+                  <div class="app-table-panel"><div class="app-panel-heading"><h3>Your campaigns</h3><span>Filter ⌄</span></div><table class="app-table"><thead><tr><th>Campaign</th><th>Status</th><th>Recipients</th></tr></thead><tbody><tr><td>October product update</td><td><span class="app-status">Sent</span></td><td>2,184</td></tr><tr><td>Monthly newsletter</td><td><span class="app-status">Sent</span></td><td>2,102</td></tr><tr><td>Autumn offer</td><td><span class="app-status draft">Draft</span></td><td>—</td></tr><tr><td>Welcome sequence</td><td><span class="app-status scheduled">Scheduled</span></td><td>New contacts</td></tr></tbody></table></div>
+                </section>
+
+                <section class="app-view" data-app-panel="templates" aria-label="Templates preview" hidden>
+                  <div class="app-panel-heading"><h3>Start with a template</h3><span>4 available</span></div>
+                  <div class="app-template-grid"><article class="app-template"><div class="app-template-art"><span></span><span></span><span></span></div><p class="app-template-name">Monthly newsletter</p><div class="app-template-meta">Editorial · Responsive</div></article><article class="app-template"><div class="app-template-art"><span></span><span></span><span></span></div><p class="app-template-name">Product update</p><div class="app-template-meta">Product · Responsive</div></article><article class="app-template"><div class="app-template-art"><span></span><span></span><span></span></div><p class="app-template-name">Welcome email</p><div class="app-template-meta">Onboarding · Simple</div></article><article class="app-template"><div class="app-template-art"><span></span><span></span><span></span></div><p class="app-template-name">Special offer</p><div class="app-template-meta">Promotion · Responsive</div></article></div>
+                </section>
+
+                <section class="app-view" data-app-panel="automations" aria-label="Automations preview" hidden>
+                  <div class="app-stats"><div class="app-stat"><div class="app-stat-label">Active flows</div><div class="app-stat-value">02</div><div class="app-stat-foot">Running</div></div><div class="app-stat"><div class="app-stat-label">Enrolled</div><div class="app-stat-value">386</div><div class="app-stat-foot">Contacts</div></div><div class="app-stat"><div class="app-stat-label">Emails sent</div><div class="app-stat-value">612</div><div class="app-stat-foot">This month</div></div><div class="app-stat"><div class="app-stat-label">Completion</div><div class="app-stat-value">68%</div><div class="app-stat-foot">All flows</div></div></div>
+                  <div class="app-panel-heading" style="margin-top:12px"><h3>Your automations</h3><span>Manage flows →</span></div><div class="app-automation"><span class="app-automation-icon">↗</span><span class="app-automation-copy"><strong>Welcome new subscribers</strong><span>Trigger: contact subscribes · 3 steps</span></span><span class="app-mini-switch" aria-label="Active"></span></div><div class="app-automation"><span class="app-automation-icon">✳</span><span class="app-automation-copy"><strong>Reconnect with readers</strong><span>Trigger: no activity for 30 days</span></span><span class="app-mini-switch" aria-label="Active"></span></div>
+                </section>
+
+                <section class="app-view" data-app-panel="settings" aria-label="Settings preview" hidden>
+                  <div class="app-panel-heading"><h3>Workspace settings</h3><span>Demo workspace</span></div><div class="app-table-panel"><table class="app-table"><tbody><tr><td>Workspace profile</td><td>Neumond Studio</td><td>→</td></tr><tr><td>Sending domains</td><td><span class="app-status scheduled">Not connected</span></td><td>→</td></tr><tr><td>Team members</td><td>1 member</td><td>→</td></tr><tr><td>Plan and usage</td><td>Free plan</td><td>→</td></tr></tbody></table></div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="preview-note"><span class="preview-note-mark" aria-hidden="true">✳</span><span>A preview of the Neumond email marketing workspace · Sample data</span></div>
+        </div>
+      </section>
+
+      <section class="container vision" id="vision" aria-labelledby="vision-title">
+        <div class="section-rule"></div>
+        <div class="section-heading">
+          <div><div class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>The idea</div><h2 id="vision-title">The essentials, with a little more thought.</h2></div>
+          <p>Useful tools should make your work feel lighter. Neumond is being shaped around clarity, respect for your audience, and room to grow.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-top"><span class="feature-icon" aria-hidden="true">◎</span><span class="feature-number">01 / Audience</span></div>
+            <h3>Know the people behind the list</h3>
+            <p>Bring contacts together, keep preferences clear, and make every relationship feel a little less like a spreadsheet.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-top"><span class="feature-icon" aria-hidden="true">↗</span><span class="feature-number">02 / Campaigns</span></div>
+            <h3>Make messages worth opening</h3>
+            <p>Create considered campaigns, send with confidence, and understand what resonates without getting lost in dashboards.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-top"><span class="feature-icon" aria-hidden="true">✳</span><span class="feature-number">03 / What's next</span></div>
+            <h3>More ways to stay connected</h3>
+            <p>Email is the beginning. The longer-term idea is to make customer communication across channels feel joined up.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container" id="coming-soon" aria-labelledby="closing-title">
+        <div class="closing">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Coming soon</div>
+            <h2 id="closing-title">Good marketing doesn't need to be loud.</h2>
+            <p>Neumond Marketing Software is taking shape. We're focused on getting the fundamentals right before opening the doors.</p>
+          </div>
+          <a class="button button-primary closing-action" href="#top">Back to the top <span class="button-arrow" aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <div class="footer-brand"><span class="footer-mark" aria-hidden="true"></span><span>© <span id="year">2026</span> Neumond Marketing Software</span></div>
+      <div class="footer-right"><span>Made thoughtfully in Europe</span><a class="footer-link" href="#top">Back to top ↑</a></div>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-label');
+      const glyph = document.getElementById('theme-glyph');
+      const themeMeta = document.getElementById('theme-color-meta');
+      const savedTheme = (() => {
+        try { return localStorage.getItem('neumond-theme'); }
+        catch (_) { return null; }
+      })();
+      const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const applyTheme = (theme, persist = false) => {
+        const dark = theme === 'dark';
+        root.dataset.theme = dark ? 'dark' : 'light';
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+        label.textContent = dark ? 'Dark theme' : 'Light theme';
+        glyph.textContent = dark ? '☾' : '☼';
+        themeMeta.setAttribute('content', dark ? '#171c19' : '#f8f6f0');
+        if (persist) {
+          try { localStorage.setItem('neumond-theme', dark ? 'dark' : 'light'); }
+          catch (_) { /* Theme switching still works when storage is unavailable. */ }
+        }
+      };
+      applyTheme(savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme);
+      button.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const viewDetails = {
+        overview: ['Overview', "Here's what's happening with your audience."],
+        contacts: ['Contacts', 'Organize your audience and keep subscriber preferences in one place.'],
+        campaigns: ['Campaigns', 'Create, schedule, and measure your email campaigns.'],
+        templates: ['Templates', 'Start with a template and make it your own.'],
+        automations: ['Automations', 'Give the routine messages a little less routine.'],
+        settings: ['Settings', 'Manage your workspace and sending configuration.']
+      };
+      const title = document.getElementById('app-view-title');
+      const subtitle = document.getElementById('app-view-subtitle');
+      const breadcrumb = document.getElementById('app-breadcrumb');
+      const navButtons = Array.from(document.querySelectorAll('[data-app-view]'));
+      const panels = Array.from(document.querySelectorAll('[data-app-panel]'));
+      const createButton = document.getElementById('app-create-button');
+      const setView = (view) => {
+        if (!viewDetails[view]) return;
+        const [heading, description] = viewDetails[view];
+        title.textContent = heading;
+        subtitle.textContent = description;
+        breadcrumb.textContent = 'Workspace / ' + heading;
+        navButtons.forEach((nav) => {
+          if (nav.dataset.appView === view) nav.setAttribute('aria-current', 'page');
+          else nav.removeAttribute('aria-current');
+        });
+        panels.forEach((panel) => { panel.hidden = panel.dataset.appPanel !== view; });
+        createButton.textContent = view === 'campaigns' ? '＋ New draft' : '＋ Create campaign';
+      };
+      navButtons.forEach((nav) => nav.addEventListener('click', () => setView(nav.dataset.appView)));
+      createButton.addEventListener('click', () => {
+        setView('campaigns');
+        const subtitleText = 'Campaign draft selected — this is a concept preview with sample data.';
+        subtitle.textContent = subtitleText;
+        const draft = document.querySelector('[data-app-panel="campaigns"] .app-table tbody tr:nth-child(3) td:first-child');
+        if (draft) draft.textContent = 'New campaign draft';
+        const draftStatus = document.querySelector('[data-app-panel="campaigns"] .app-table tbody tr:nth-child(3) .app-status');
+        if (draftStatus) draftStatus.textContent = 'Draft created';
+      });
+    })();
+  </script>
+</body>
+</html>
